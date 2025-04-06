@@ -1,0 +1,27 @@
+# Название инсталлятора
+Outfile "MyAppInstaller.exe"
+
+# Директория установки
+InstallDir $PROGRAMFILES\MyApp
+
+# Разрешаем создание ярлыков на рабочем столе
+RequestExecutionLevel admin
+
+# Файлы, которые будут установлены
+Section "MainSection"
+    # Указываем путь к исходным файлам на рабочем столе
+    SetOutPath $INSTDIR
+    File "C:\Users\Archi\Desktop\compiledet\comp.exe"   # Путь к comp.exe
+    File "C:\Users\Archi\Desktop\compiledet\comp.ico"   # Путь к comp.ico
+    
+    # Создаем ярлык на рабочем столе с заданным значком
+    CreateShortCut "$DESKTOP\compele.lnk" "$INSTDIR\comp.exe" "" "$INSTDIR\comp.ico"
+SectionEnd
+
+# Раздел для удаления файлов
+Section "Uninstall"
+    # Удаляем файлы при деинсталляции
+    Delete "$INSTDIR\comp.exe"
+    Delete "$INSTDIR\comp.ico"
+    Delete "$DESKTOP\compele.lnk"
+SectionEnd
